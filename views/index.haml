@@ -1,0 +1,17 @@
+.title 
+	Results for
+	= @q
+%form{:action => "/", :method => "post"}
+	%input{:type => "text",:name => "q"}
+	%input{:type => "submit"}
+
+%table
+	- unless @results.nil?
+		- @results.each do |r|
+			%tr
+				%td
+					= r["_id"]["name"]
+				%td
+					= r["_id"]["version"]
+				%td
+					= r["value"]["count"]
