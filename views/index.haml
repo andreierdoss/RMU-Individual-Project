@@ -1,17 +1,19 @@
-.title 
-	Results for
-	= @q
+.title Search for a gem
 %form{:action => "/", :method => "post"}
 	%input{:type => "text",:name => "q"}
 	%input{:type => "submit"}
 
-%table
-	- unless @results.nil?
+- unless @results.nil?
+	.title Results for '#{@q}'
+	%table
+		%tr
+			%th
+				Gem Name - Version
+			%th
+				Frequency
 		- @results.each do |r|
 			%tr
 				%td
-					= r["_id"]["name"]
-				%td
-					= r["_id"]["version"]
+					= r["_id"]["name_version"]
 				%td
 					= r["value"]["count"]

@@ -14,7 +14,6 @@ end
 
 post '/' do
 	@q = params[:q]
-  res = coll.map_reduce(m,r,{ :query => {"gems.name" => /^#{@q}/}})
-	@results = res.find().sort("value.count", -1)
+  @results = coll.map_reduce(m,r,{ :query => {"gems.name_version" => /^#{@q}/}}).find().sort("value.count", -1)
 	haml :index
 end
